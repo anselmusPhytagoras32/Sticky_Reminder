@@ -1,6 +1,3 @@
-from random import choice
-
-
 def add_task():
     user_input = input("Enter a task: ")
 
