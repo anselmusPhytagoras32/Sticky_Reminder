@@ -1,7 +1,11 @@
-def add_message():
+from random import choice
 
 
-def main():
+def add_task():
+    user_input = input("Enter a task: ")
+
+
+
     while True:
         print("Welcome to Sticky Reminder")
         print("Select operation to perform")
@@ -9,4 +13,8 @@ def main():
         print("2. Remove a message")
         print("3. Exit")
 
-        choice  = input("Enter your choice: ")
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            add_task()
+
+
