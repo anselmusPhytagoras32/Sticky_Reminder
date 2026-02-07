@@ -1,6 +1,4 @@
 import tkinter as tk
 from modules import window
 
-win_create = window.init_window()
-
-
+app_create = window.app_window()
