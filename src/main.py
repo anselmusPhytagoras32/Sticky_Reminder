@@ -1,5 +1,6 @@
-# take inputs
-# read inputs
-# 
-# place inputs in a db 
-# add ui
+import tkinter as tk
+from modules import window
+
+win_create = window.init_window()
+
+
