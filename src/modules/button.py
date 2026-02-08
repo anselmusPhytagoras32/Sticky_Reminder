@@ -10,7 +10,11 @@ def history_button(parent):
     button_history.pack(side=tk.LEFT, padx=5)
 
 def add_button(parent):
-    button_add = tk.Button(parent, text="Add Task", fg="black")
+    def add_list():
+        new_list = tk.Entry(parent, width=7, textvariable=tk.StringVar())
+        new_list.pack(side=tk.RIGHT, padx=5)
+    
+    button_add = tk.Button(parent, text="Add Task", fg="black", command=add_list)
     button_add.pack(side=tk.RIGHT, padx=5 )
 
 def delete_button(parent):
