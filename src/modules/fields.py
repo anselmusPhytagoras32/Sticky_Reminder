@@ -1,18 +1,33 @@
 import tkinter as tk
 
-class input_field:
+class InputField:
     def __init__(self, parent):
         self.parent = parent
-        self.entries = []
         
-        self.my_label = tk.Label(parent, text='')
-        self.my_label.pack(pady=20)
+        self.queue_frame = tk.Frame(parent)
+        self.queue_frame.pack(side=tk.TOP, expand=True, fill='both')
+        
+        self.entry_var = tk.StringVar()
+        self.main_entry = tk.Entry(parent, width=40, textvariable=self.entry_var)
+        self.main_entry.pack(side=tk.BOTTOM, pady=10)
+        
+        # For enter key (add feature) 
+        self.main_entry.bind('<Return>', lambda event: self.add_queue())
 
-    def new_entry(self):
-        new_list = tk.Entry(self.parent, width=100, textvariable=tk.StringVar())
-        new_list.pack(side=tk.TOP,anchor="center")
-        self.entries.append(new_list)
+    def add_queue(self):
+        task_text = self.entry_var.get()
+        
+        # Prevent adding empty tasks
+        if task_text == "":
+            return
 
-    def get_text(self):
-        all_text = "".join(input.get() + "\n" for input in self.entries)
-        self.my_label.config(text=all_text)
+        task_label = tk.Label(
+            self.queue_frame, 
+            text=f"• {task_text}", 
+            anchor="w",            
+            font=("Arial", 12)
+        )
+        
+        task_label.pack(side=tk.TOP, fill='x', padx=20, pady=2)
+        
+        self.main_entry.delete(0, tk.END)
