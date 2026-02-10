@@ -14,9 +14,13 @@ def app_window():
     main_frame = tk.Frame(window)
     main_frame.pack(expand=True, fill="both", padx=2, pady=20)
 
-    task_manager = input_field(main_frame)
-    
-    button.history_button(main_frame)
-    button.add_button(main_frame, task_manager)
+    take_input = input_field(main_frame)
+    take_input.new_entry()
+        
     button.delete_button(main_frame)
+    button.edit_button(main_frame)
+    button.add_button(main_frame, take_input)
+    
+    take_input.get_text()
+    
     window.mainloop()
