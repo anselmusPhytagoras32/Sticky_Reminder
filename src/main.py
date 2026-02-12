@@ -1,3 +1,4 @@
+from datetime import date
 import customtkinter as ctk
 
 from modules.actions import Actions
@@ -30,7 +31,10 @@ class App(ctk.CTk):
         self.header.columnconfigure(2, weight=2) # Date and Count
         self.header.columnconfigure(4, weight=1)
 
-        self.date_lbl = ctk.CTkLabel(self.header, text="30 FEBRUARY, MON", font=("Helvetica", 14, "bold"), text_color="white")
+        self.now = date.today()
+        self.date = self.now.strftime("%d, %B %A")
+
+        self.date_lbl = ctk.CTkLabel(self.header, text=self.date, font=("Helvetica", 14, "bold"), text_color="white")
         self.date_lbl.grid(row=0, column=2, sticky="s")
         
         self.count_lbl = ctk.CTkLabel(self.header, text="0 tasks", font=("Helvetica", 12), text_color=self.colors["accent"])
@@ -38,9 +42,6 @@ class App(ctk.CTk):
 
         self.actions = Actions(self)
         self.tasks = []
-
-        self.actions.add_task("Create new icon set")
-        self.actions.add_task("Design Special Offer screen")
 
 if __name__ == "__main__":
     app = App()
