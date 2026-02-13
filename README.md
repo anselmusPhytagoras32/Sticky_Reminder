@@ -18,9 +18,10 @@ Think of this as a digital notepad. You can:
    [Download Sticky_Remider](https://drive.google.com/file/d/1Ff6tf5jIvppUQsO7WWQu6Fv7-AFGrpF2/view)
 2. **Run** the file directly on your Windows computer.
 
----
-
 ###  How to Use
+
+---![preview](https://github.com/user-attachments/assets/5566961e-0123-48ba-8265-81b127ae2deb)
+
 Once the program is running, you will see a simple menu on your screen like this:
 
 1. **Add Task**
