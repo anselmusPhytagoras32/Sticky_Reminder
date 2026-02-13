@@ -5,11 +5,14 @@ ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("dark-blue")  
 
 class TaskRow(ctk.CTkFrame):
-    def __init__(self, parent, task_text, delete_callback):
+    def __init__(self, parent, task_text, delete_callback, toggle_callback, is_done=False):
         super().__init__(parent, fg_color="transparent")
         self.pack(fill="x", pady=5, padx=10)
         self.delete_callback = delete_callback
-        self.is_checked = ctk.BooleanVar(value=False)
+        self.toggle_callback = toggle_callback
+        
+        # Track checked state
+        self.is_checked = ctk.BooleanVar(value=is_done)
 
         self.checkbox = ctk.CTkCheckBox(
             self, 
@@ -17,7 +20,7 @@ class TaskRow(ctk.CTkFrame):
             text_color="#ffffff",
             font=("Helvetica", 14),
             variable=self.is_checked,
-            command=self.toggle_task,
+            command=self.on_toggle, # Use new toggle handler
             corner_radius=20,
             hover_color="#5e455e",
             fg_color="#bba151",      
@@ -25,6 +28,10 @@ class TaskRow(ctk.CTkFrame):
             checkmark_color="#422e42"
         )
         self.checkbox.pack(side="left", padx=10, pady=10)
+        
+        # Apply dimmed style if initially done
+        if is_done:
+            self.checkbox.configure(text_color="#7d667d")
 
         self.del_btn = ctk.CTkButton(
             self, 
@@ -39,9 +46,11 @@ class TaskRow(ctk.CTkFrame):
         )
         self.del_btn.pack(side="right", padx=5)
 
-    def toggle_task(self):
+    def on_toggle(self):
+        # Update Visuals
         if self.is_checked.get():
-            self.checkbox.configure(text_color="#7d667d") # Dimmed
+            self.checkbox.configure(text_color="#7d667d")
         else:
-            self.checkbox.configure(text_color="#ffffff") # White
+            self.checkbox.configure(text_color="#ffffff")
+        self.toggle_callback()
 
